@@ -1,0 +1,62 @@
+﻿@model List<EntityLayer.Entities.User>
+@{
+    ViewBag.Title = "UserList";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<style>
+    /* CSS stil kodları */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .btn {
+        text-decoration: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        color: white;
+    }
+</style>
+
+<h2>KULLANICILAR</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <td>Ad Soyad</td>
+        <td>Email</td>
+        <td>Kullanıcı Adı</td>
+        <td>Şifre</td>
+        <td>Sil</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Email</td>
+            <td>@item.UserName</td>
+            <td>@item.Password</td>
+            <td>@Html.ActionLink("Sil", "UserDelete", new { item.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek istiyor musun')" })</td>
+
+        </tr>
+
+    }
+</table>

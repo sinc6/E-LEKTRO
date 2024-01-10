@@ -1,0 +1,99 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model  IPagedList<EntityLayer.Entities.Product>
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    /* CSS stil kodları */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .btn {
+        text-decoration: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        color: white;
+    }
+</style>
+
+<a href="/AdminProduct/Create" class="btn btn-primary">Ekle</a>
+<br /><br />
+<table class="table table-bordered">
+    <tr>
+        <th>Ad</th>
+        <th>Açıklama</th>
+        <th>Fiyat</th>
+        <th>Stok</th>
+        <th>Popüler</th>
+        <th>Onay</th>
+        <th>Resim</th>
+        <th>Kategori</th>
+        <th>Sil</th>
+        @*<th>Güncelle</th>*@
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+            <td>@item.Price</td>
+            <td>@item.Stock</td>
+            <td>
+                @if (item.Popular == true)
+                {
+                    <label class="btn btn-success">Evet</label>
+                }
+                else
+                {
+                    <label class="btn btn-danger">Hayır</label>
+                }
+
+            </td>
+            <td>
+                @if (item.IsApproved == true)
+                {
+                    <label class="btn btn-success">Evet</label>
+                }
+                else
+                {
+                    <label class="btn btn-danger">Hayır</label>
+                }
+            </td>
+            <td>
+                <img src="~/Content/Image/@item.Image" width="80" height="80" />
+                Resim
+
+            </td>
+            <td>@item.Category.Name</td>
+            <td>@Html.ActionLink("Sil", "Delete", new { item.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek istiyor musun')" })</td>
+            @*<td><a class="btn btn-primary" hef="/AdminProduct/Update/@item.Id">Güncelle</a></td>*@
+        </tr>
+
+    }
+
+</table>
+
+@Html.PagedListPager(Model, sayfa=>Url.Action("Index", new {sayfa}), PagedListRenderOptions.Classic)

@@ -1,0 +1,96 @@
+﻿@model List<EntityLayer.Entities.Category>
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+        /* CSS stil kodları */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+        }
+    </style>
+
+<a class="btn btn-primary" href="/AdminCategory/Create">Kategori Ekle</a>
+<br />
+<br />
+<table class="table table-bordered" id="table">
+    <tr>
+        <th>Ad</th>
+        <th>Açıklama</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+            <td>@Html.ActionLink("Sil", "Delete", new { item.Id }, new { @class = "btn btn-danger", onclick = "return confirm ('Silmek istiyor musunuz?')" })</td>
+            @*<td><a class="btn btn-danger btnSil" data-id="@item.Id">Sil</a></td>*@
+            <td><a class="btn btn-primary" href="/AdminCategory/Update/@item.Id">Güncelle</a></td>
+
+        </tr>
+    }
+</table>
+
+<script src="~/Scripts/jquery-1.9.0.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#table").on("click", ".btnSil", function () {
+
+            var btn = $(this);
+
+            bootbox.confirm('Silmek istediğinize emin misiniz?', function (result) {
+                if (result) {
+                    var id = btn.data("id");
+
+                    $.ajax({
+                        type: 'GET',
+                        url: '/AdminCategory/Delete/' + id,
+
+                        success: function () {
+                            btn.parent().parent().remove();
+                        }
+                    });
+                } else {
+                    bootbox.confirm("Hata oluştu");
+                }
+            })
+
+        });
+
+    });
+</script>
+
+
+
+
+

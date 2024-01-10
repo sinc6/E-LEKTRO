@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<br />
+<!--<!DOCTYPE html>
+<html>
+<head>-->
+    @*<link href="~/NiceAdmin/css/style.css" rel="stylesheet">*@
+    @*<link href="~/web2/css/style.css" rel="stylesheet" type="text/css" media="all" />*@
+
+
+    @*<script src="~/web2/js/jquery.min.js"></script>
+        <link rel="stylesheet" href="~/web2/css/font-awesome.css" />*@
+
+<!--</head>
+
+</html>-->
+<body>
+    <div class="total-content">
+        <div class="list_of_members">
+            <div class="col-md-4" style="background-color:chocolate" >
+                <div class="icon">
+                    <i class="dollar"></i>
+                   
+                </div>
+                <div class="icon-text" style="color:white">
+                  
+                    <h3>@ViewBag.satis</h3>
+                    <p>Toplam Satışlar</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="col-md-4" style="background-color:coral">
+                <div class="icon">
+                    <i class="order"></i>
+                </div>
+                <div class="icon-text" style="color:white">
+                    <h3>@ViewBag.urun</h3>
+                    <p>Ürün Sayısı</p>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="col-md-4" style="background-color:darkcyan">
+                <div class="icon">
+                    <i class="visit"></i>
+                </div>
+                <div class="icon-text" style="color:white">
+                    <h3>@ViewBag.kategori</h3>
+                    <p>Kategori Sayısı</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="col-md-4" style="background-color:darkmagenta">
+                <div class="icon">
+                    <i class="visit"></i>
+                </div>
+                <div class="icon-text" style="color:white">
+                    <h3>@ViewBag.sepet</h3>
+                    <p>Sepet Sayısı</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="col-md-4" style="background-color:darkslateblue">
+                <div class="icon">
+                    <i class="user1"></i>
+                </div>
+                <div class="icon-text" style="color:white">
+                    <h3>@ViewBag.kullanici</h3>
+                    <p>Kullanıcı Sayısı</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
